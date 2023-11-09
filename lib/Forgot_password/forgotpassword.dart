@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:wayelle/Anetwork/api.dart';
 
 import '../Login_screen/login_screen.dart';
 
@@ -31,8 +32,7 @@ class _ForgotpassState extends State<Forgotpass> {
   late String _email;
 
   Future<void> _register() async {
-    final url =
-        'https://globosoft.org/2023/02/wayelle2/api/forgotten/key/123456789';
+    final url = '${baseurl}api/forgotten/key/123456789';
 
     final response = await http.post(Uri.parse(url), body: {
       'telephone': _email,
@@ -50,7 +50,9 @@ class _ForgotpassState extends State<Forgotpass> {
     } else {
       // Registration failed, show error message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('The E-Mail Address was not found in our records, please try again!')),
+        SnackBar(
+            content: Text(
+                'The E-Mail Address was not found in our records, please try again!')),
       );
     }
   }
@@ -97,7 +99,10 @@ class _ForgotpassState extends State<Forgotpass> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginScreen(switchLanguage: widget.switchLanguage),),
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(
+                                switchLanguage: widget.switchLanguage),
+                          ),
                         );
                       },
                       icon: Icon(
@@ -140,7 +145,7 @@ class _ForgotpassState extends State<Forgotpass> {
                 height: 26,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16,right: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:wayelle/Anetwork/api.dart';
+
 class Categorychpdts {
   final int id;
   final String name;
@@ -52,7 +54,7 @@ class _CategoryListPageState extends State<CategorychpdtsListPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://globosoft.org/2023/02/wayelle2/api/products/category/27/key/123456789',
+          '${baseurl}api/products/category/27/key/123456789',
         ),
       );
 

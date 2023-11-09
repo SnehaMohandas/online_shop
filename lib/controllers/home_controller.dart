@@ -7,6 +7,8 @@ import 'package:wayelle/Anetwork/api.dart';
 class HomeController extends GetxController {
   Banners? banner;
   var isLoading = true.obs;
+  List bannerImgs = [];
+  List bannerTitle = [];
 
   fetchBanners() async {
     try {
@@ -16,6 +18,10 @@ class HomeController extends GetxController {
       if (response.statusCode == 200) {
         var data = bannersFromJson(response.body);
         banner = data;
+        for (int i = 0; i <= banner!.banners.length; i++) {
+          bannerImgs.addAll([banner!.banners[i].image]);
+          bannerTitle.addAll([banner!.banners[i].title.toUpperCase()]);
+        }
         print(banner!.banners[0].bannerImageId);
       } else {}
     } catch (e) {

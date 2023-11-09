@@ -6,7 +6,7 @@ import 'package:wayelle/Anetwork/api.dart';
 import '../Amodule/model/search_model.dart';
 import 'package:http/http.dart' as http;
 
-class SearchController extends GetxController {
+class SearchControllers extends GetxController {
   Search? search;
   var isLoading = true.obs;
   var searchkey = '';
@@ -41,7 +41,6 @@ class SearchController extends GetxController {
 
   @override
   void onInit() {
-    // featchSeachResult("k");
     super.onInit();
   }
 }

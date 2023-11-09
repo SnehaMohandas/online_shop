@@ -8,7 +8,11 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wayelle/Anetwork/api.dart';
+import 'package:wayelle/controllers/cart_controller.dart';
+import 'package:wayelle/controllers/favorite_controller.dart';
+import 'package:wayelle/controllers/my_order_controller.dart';
 import 'package:wayelle/controllers/product_details_controller.dart';
+import 'package:wayelle/controllers/user_register_controller.dart';
 import 'package:wayelle/wishlist/wishlist_listing.dart';
 import 'A_comman_widget/Country_Zone/country_dropdown.dart';
 import 'A_comman_widget/Home_page/Best_seller.dart';
@@ -30,6 +34,7 @@ import 'Inner_pages/bestseller_innerpage.dart';
 import 'Inner_pages/latestproduct_innerpage.dart';
 import 'Login_screen/login_screen.dart';
 import 'Onboarding_screens/Screen_1.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -44,6 +49,9 @@ int? global_id;
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      'pk_live_51M28KDKTgJy3KTxX448K6xAY2NQSpzr7wQoXEnn2wKhrPhTza3bi98ctxxRp19AzzRxiehMmowQjhPla1HMVsXCy001rtz9Nn2';
   runApp(const MyApp());
 }
 
@@ -114,20 +122,50 @@ class _SplashScreenState extends State<SplashScreen> {
     int? user_id = prefs.getInt('customer_id');
 
     final pref = await SharedPreferences.getInstance();
-    // prefs.setString("customer_id", jsonResponse["userdata"]["customer_id"]);
     customer_id = prefs.getString("customer_Id");
+    userEmail = prefs.getString("email");
+    usercustomerGrpId = prefs.getString("cus_grp_id");
+    print(usercustomerGrpId);
+
+    userfirstName = prefs.getString("user_firstname");
+    print(userfirstName);
+
+    userlatName = prefs.getString("user_lastname");
+    print(userlatName);
+
+    usertelePhone = prefs.getString("user_telephone");
+    print(usertelePhone);
+
+    // useraddress = prefs.getString("user_address");
+    // print(useraddress);
+
+    // usercity = prefs.getString("user_city");
+    // print(usercity);
+
+    // userpostCode = prefs.getString("user_postcode");
+    // print(userpostCode);
+
     await Future.delayed(
         const Duration(seconds: 3)); // Display splash screen for 3 seconds
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => user_id != null
+        builder: (context) => customer_id != null
             ? Bottomnavigation(
                 switchLanguage: (String) {},
               )
             : Onscreen1(switchLanguage: widget.switchLanguage),
       ),
     );
+    if (customer_id != null) {
+      var controller = Get.put(CartController());
+      var myorderController = Get.put(MyOrderController());
+
+      var favController = Get.put(FavoriteController());
+      controller.fetchCart();
+      myorderController.fetchMyorders();
+      favController.fetchWishList();
+    }
     if (user_id != null) {
       global_id = user_id; // Assign the value to the global variable
       print("User ID: $customer_id");
@@ -136,6 +174,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(RegisterController(widget.switchLanguage));
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/Anetwork/api.dart';
 
 /// category
 
@@ -96,8 +97,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
 
     try {
       final response = await http.get(
-        Uri.parse(
-            'https://globosoft.org/2023/02/wayelle2/api/getCategories/key/123456789'),
+        Uri.parse('${baseurl}api/getCategories/key/123456789'),
       );
 
       if (response.statusCode == 200) {
@@ -129,7 +129,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://globosoft.org/2023/02/wayelle2/api/getchildCategories/cate_id/$categoryId/key/123456789'),
+            '${baseurl}api/getchildCategories/cate_id/$categoryId/key/123456789'),
       );
 
       if (response.statusCode == 200) {
@@ -182,7 +182,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://globosoft.org/2023/02/wayelle2/api/products/category/$subcategoryId/key/123456789'),
+            '${baseurl}api/products/category/$subcategoryId/key/123456789'),
       );
 
       if (response.statusCode == 200) {
@@ -396,9 +396,14 @@ class SubcategoryListPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.black,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
         ),
         title: Text(
           'Subcategories',

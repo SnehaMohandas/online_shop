@@ -55,14 +55,12 @@ class _SpringsummerState extends State<Springsummerr> {
                           padding: const EdgeInsets.only(left: 16, right: 16),
                           child: Row(
                             children: [
-                              Material(
-                                child: Text(
-                                  'Spring Summer',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
+                              Text(
+                                'Spring Summer',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black),
                               ),
                               Spacer(),
                               GestureDetector(
@@ -139,7 +137,7 @@ class _SpringsummerState extends State<Springsummerr> {
                                                   BorderRadius.circular(5),
                                               child: Image(
                                                 image: NetworkImage(
-                                                    '${spring.feature?[index].thumb ?? ''}'),
+                                                    '${spring.feature?[index].thumb}'),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),

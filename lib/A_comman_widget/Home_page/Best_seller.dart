@@ -54,14 +54,12 @@ class _CoprodutssState extends State<Bestselleer> {
                           padding: const EdgeInsets.only(left: 16, right: 16),
                           child: Row(
                             children: [
-                              Material(
-                                child: Text(
-                                  'Best Seller',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
+                              Text(
+                                'Best Seller',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black),
                               ),
                               Spacer(),
                               GestureDetector(
@@ -139,7 +137,7 @@ class _CoprodutssState extends State<Bestselleer> {
                                                   BorderRadius.circular(5),
                                               child: Image(
                                                 image: NetworkImage(
-                                                    '${best.feature?[index].thumb ?? ''}'),
+                                                    '${best.feature?[index].thumb}'),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),

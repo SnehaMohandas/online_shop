@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:wayelle/Anetwork/api.dart';
+
 class Categorych {
   final int category_id;
   final String name;
@@ -49,7 +51,7 @@ class _CategoryListPageState extends State<CategorychListPage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://globosoft.org/2023/02/wayelle2/api/getchildCategories/cate_id/20/key/123456789',
+          '${baseurl}api/getchildCategories/cate_id/20/key/123456789',
         ),
       );
 
@@ -88,38 +90,48 @@ class _CategoryListPageState extends State<CategorychListPage> {
       ),
       body: isLoading
           ? Center(
-        child: CircularProgressIndicator(),
-      )
+              child: CircularProgressIndicator(),
+            )
           : Column(
-        children: [
-          SizedBox(height: 8,),
-          Expanded(
-            child: ListView.builder(
-              itemCount: categories.length,
-              itemBuilder: (BuildContext context, int index) {
-                final category = categories[index];
+              children: [
+                SizedBox(
+                  height: 8,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: categories.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final category = categories[index];
 
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 150,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black,),
-                          child: Center(child: Text(category.name,style: TextStyle(fontSize: 24,fontWeight: FontWeight.w100,color: Colors.white),)),
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.black,
+                                ),
+                                child: Center(
+                                    child: Text(
+                                  category.name,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w100,
+                                      color: Colors.white),
+                                )),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

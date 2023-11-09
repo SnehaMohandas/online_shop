@@ -1,86 +1,87 @@
 // To parse this JSON data, do
 //
-//     final orderDetails = orderDetailsFromJson(jsonString);
+//     final orders = ordersFromJson(jsonString);
 
 import 'dart:convert';
 
-OrderDetails orderDetailsFromJson(String str) =>
-    OrderDetails.fromJson(json.decode(str));
+Orders ordersFromJson(String str) => Orders.fromJson(json.decode(str));
 
-String orderDetailsToJson(OrderDetails data) => json.encode(data.toJson());
+String ordersToJson(Orders data) => json.encode(data.toJson());
 
-class OrderDetails {
+class Orders {
   bool success;
-  List<Order> orders;
+  List<Ordersproduct> ordersproducts;
 
-  OrderDetails({
+  Orders({
     required this.success,
-    required this.orders,
+    required this.ordersproducts,
   });
 
-  factory OrderDetails.fromJson(Map<String, dynamic> json) => OrderDetails(
+  factory Orders.fromJson(Map<String, dynamic> json) => Orders(
         success: json["success"],
-        orders: List<Order>.from(json["orders"].map((x) => Order.fromJson(x))),
+        ordersproducts: List<Ordersproduct>.from(
+            json["ordersproducts"].map((x) => Ordersproduct.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
-        "orders": List<dynamic>.from(orders.map((x) => x.toJson())),
+        "ordersproducts":
+            List<dynamic>.from(ordersproducts.map((x) => x.toJson())),
       };
 }
 
-class Order {
+class Ordersproduct {
+  String orderProductId;
   String orderId;
+  String productId;
   String name;
-  String status;
-  String timeslot;
-  DateTime dateAdded;
-  String subTotal;
-  dynamic discount;
-  int products;
+  String model;
+  String quantity;
+  String price;
   String total;
-  String currencyCode;
-  String currencyValue;
+  String tax;
+  String reward;
+  String images;
 
-  Order({
+  Ordersproduct({
+    required this.orderProductId,
     required this.orderId,
+    required this.productId,
     required this.name,
-    required this.status,
-    required this.timeslot,
-    required this.dateAdded,
-    required this.subTotal,
-    required this.discount,
-    required this.products,
+    required this.model,
+    required this.quantity,
+    required this.price,
     required this.total,
-    required this.currencyCode,
-    required this.currencyValue,
+    required this.tax,
+    required this.reward,
+    required this.images,
   });
 
-  factory Order.fromJson(Map<String, dynamic> json) => Order(
+  factory Ordersproduct.fromJson(Map<String, dynamic> json) => Ordersproduct(
+        orderProductId: json["order_product_id"],
         orderId: json["order_id"],
+        productId: json["product_id"],
         name: json["name"],
-        status: json["status"],
-        timeslot: json["timeslot"],
-        dateAdded: DateTime.parse(json["date_added"]),
-        subTotal: json["sub_total"],
-        discount: json["discount"],
-        products: json["products"],
+        model: json["model"],
+        quantity: json["quantity"],
+        price: json["price"],
         total: json["total"],
-        currencyCode: json["currency_code"],
-        currencyValue: json["currency_value"],
+        tax: json["tax"],
+        reward: json["reward"],
+        images: json["images"],
       );
 
   Map<String, dynamic> toJson() => {
+        "order_product_id": orderProductId,
         "order_id": orderId,
+        "product_id": productId,
         "name": name,
-        "status": status,
-        "timeslot": timeslot,
-        "date_added": dateAdded.toIso8601String(),
-        "sub_total": subTotal,
-        "discount": discount,
-        "products": products,
+        "model": model,
+        "quantity": quantity,
+        "price": price,
         "total": total,
-        "currency_code": currencyCode,
-        "currency_value": currencyValue,
+        "tax": tax,
+        "reward": reward,
+        "images": images,
       };
 }

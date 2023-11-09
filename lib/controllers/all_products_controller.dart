@@ -16,28 +16,12 @@ class AllproductController extends GetxController {
       if (response.statusCode == 200) {
         var data = allproductFromJson(response.body);
         allproducts = data;
-        print("allproduct response${allproducts}");
       } else {}
     } catch (e) {
     } finally {
       isLoading(false);
     }
   }
-//    fetchBestseller() async {
-//     try {
-//       isLoading(true);
-//       var response =
-//           await http.get(Uri.parse("${baseurl}api/getBestseller/limit/{limit}/key/{secret_key}"));
-//       if (response.statusCode == 200) {
-//         var data = allproductFromJson(response.body);
-//         allproducts = data;
-//         print("allproduct response${allproducts}");
-//       } else {}
-//     } catch (e) {
-//     } finally {
-//       isLoading(false);
-//     }
-//   }
 
   @override
   void onInit() {
@@ -45,6 +29,3 @@ class AllproductController extends GetxController {
     super.onInit();
   }
 }
-
-
-//api/getBestseller/limit/{limit}/key/{secret_key}

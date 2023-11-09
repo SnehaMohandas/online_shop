@@ -43,8 +43,7 @@ class _ForgotpassState extends State<Updateuserdetails> {
 
   Future<void> _register() async {
     final User_ID = user_id ?? customer_id!;
-    final url =
-        'https://globosoft.org/2023/02/wayelle2/api/editCustomer/key/123456789';
+    final url = '${baseurl}api/editCustomer/key/123456789';
 
     final response = await http.post(Uri.parse(url), body: {
       'email': _email,
@@ -98,80 +97,31 @@ class _ForgotpassState extends State<Updateuserdetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.black,
+            )),
+        centerTitle: true,
+        title: Text(
+          "Update personal details",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              SizedBox(
-                height: 66,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Settingsmain(
-                                switchLanguage: widget.switchLanguage),
-                          ),
-                        );
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.black,
-                      ))
-                ],
-              ),
-
-              SizedBox(
-                height: 50,
-              ),
-
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Text(
-                    'My Profile',
-                    style: TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  )
-                ],
-              ),
-
-              SizedBox(
-                height: 21,
-              ),
-
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: Row(
-                  children: [
-                    Text(
-                      'Update User Details',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF222222)),
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 26,
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12, top: 20),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -242,7 +192,7 @@ class _ForgotpassState extends State<Updateuserdetails> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -311,7 +261,7 @@ class _ForgotpassState extends State<Updateuserdetails> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -392,7 +342,7 @@ class _ForgotpassState extends State<Updateuserdetails> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -460,70 +410,70 @@ class _ForgotpassState extends State<Updateuserdetails> {
                 height: 16,
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  /* autovalidate is disabled */
-                  keyboardType: TextInputType.emailAddress,
-                  onChanged: (val) {},
-                  maxLines: 1,
-                  onSaved: (value) {
-                    _fax = value!;
-                  },
-                  autofocus: false,
-                  decoration: InputDecoration(
-                      errorMaxLines: 3,
-                      counterText: "",
-                      filled: true,
-                      fillColor: Color(0xFFEEEEEE),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.white,
-                        ),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.white,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.white,
-                        ),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Colors.red,
-                          )),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.red,
-                        ),
-                      ),
-                      hintText: "Fax",
-                      helperStyle: TextStyle(
-                          color: Color(0xFF9B9B9B),
-                          fontWeight: FontWeight.w300,
-                          fontSize: 12)),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 12, right: 12),
+              //   child: TextFormField(
+              //     autovalidateMode: AutovalidateMode.onUserInteraction,
+              //     /* autovalidate is disabled */
+              //     keyboardType: TextInputType.emailAddress,
+              //     onChanged: (val) {},
+              //     maxLines: 1,
+              //     onSaved: (value) {
+              //       _fax = value!;
+              //     },
+              //     autofocus: false,
+              //     decoration: InputDecoration(
+              //         errorMaxLines: 3,
+              //         counterText: "",
+              //         filled: true,
+              //         fillColor: Color(0xFFEEEEEE),
+              //         focusedBorder: OutlineInputBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(4)),
+              //           borderSide: BorderSide(
+              //             width: 1,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         disabledBorder: OutlineInputBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(4)),
+              //           borderSide: BorderSide(
+              //             width: 1,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         enabledBorder: OutlineInputBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(4)),
+              //           borderSide: BorderSide(
+              //             width: 1,
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //         border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(4)),
+              //           borderSide: BorderSide(
+              //             width: 1,
+              //           ),
+              //         ),
+              //         errorBorder: OutlineInputBorder(
+              //             borderRadius: BorderRadius.all(Radius.circular(4)),
+              //             borderSide: BorderSide(
+              //               width: 1,
+              //               color: Colors.red,
+              //             )),
+              //         focusedErrorBorder: OutlineInputBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(4)),
+              //           borderSide: BorderSide(
+              //             width: 1,
+              //             color: Colors.red,
+              //           ),
+              //         ),
+              //         hintText: "Fax",
+              //         helperStyle: TextStyle(
+              //             color: Color(0xFF9B9B9B),
+              //             fontWeight: FontWeight.w300,
+              //             fontSize: 12)),
+              //   ),
+              // ),
 
               SizedBox(
                 height: 25,
@@ -537,7 +487,7 @@ class _ForgotpassState extends State<Updateuserdetails> {
                   }
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 12, right: 12),
                   child: Container(
                     height: 55,
                     width: double.infinity,

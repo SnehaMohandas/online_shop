@@ -12,14 +12,11 @@ class FavoriteController extends GetxController {
   var isLoading = true.obs;
   var isfav = false.obs;
   var emptyWishlist;
-  //RxList<String> favorites = <String>[].obs;
 
   void toggleFavorite(String id) {
     if (favorites!.wishlist.contains(id)) {
       removeWishlist(id);
-      // favorites.remove(item);
     } else {
-      // favorites.add(item);
       addtoWishList(id);
     }
   }
@@ -38,9 +35,8 @@ class FavoriteController extends GetxController {
         gravity: ToastGravity.BOTTOM,
         toastLength: Toast.LENGTH_SHORT,
       );
-      // fetchWishList();
+      fetchWishList();
       update();
-      //isLoading(false);
     } else {
       print(response.statusCode);
       throw 'Problem with the get request';
@@ -55,15 +51,14 @@ class FavoriteController extends GetxController {
       var data = json.decode(response.body);
       print(data["success"]);
 
-      print(' =${response.body}');
       Fluttertoast.showToast(
         msg: "Added to WishList",
         gravity: ToastGravity.BOTTOM,
         toastLength: Toast.LENGTH_SHORT,
       );
+      fetchWishList();
       update();
     } else {
-      print(response.statusCode);
       throw 'Problem with the get request';
     }
   }

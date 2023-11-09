@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:wayelle/Amodule/model/favorite_model.dart';
 import 'package:wayelle/Amodule/model/product_details_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:wayelle/Amodule/model/similar_products_model.dart';
 import 'package:wayelle/Anetwork/api.dart';
 
 import '../Amodule/model/add_to_cart_model.dart';
@@ -13,6 +14,7 @@ import '../Amodule/model/product_option_model.dart';
 class ProductDetailsController extends GetxController {
   ProductDetails? productDetails;
   ProductOptions? productOptions;
+  SimilarProducts? similarProducts;
   // Favorites? favorites;
 
   final productId;
@@ -29,6 +31,8 @@ class ProductDetailsController extends GetxController {
   var isSuccess = false.obs;
   var product_option_id;
   var product_option_value_id;
+  var emptySimilarpdts = "".obs;
+  RxInt activePage = 0.obs;
 
   // var selectIndex;
 
@@ -36,52 +40,57 @@ class ProductDetailsController extends GetxController {
 
   fetchProductDetails() async {
     if (productId != null) {
+      print(productId);
       try {
         isLoading(true);
         var response = await http.get(Uri.parse(
             "${baseurl}api/getProduct/p_id/${productId}/key/123456789"));
+
         if (response.statusCode == 200) {
           var data = productDetailsFromJson(response.body);
-          // isLoading(true);
 
           productDetails = data;
-          PdtImgs.add(productDetails!.product.thumb);
-
           print(PdtImgs);
-          // print(productDetails!.product.price);
-          //fetchWishList();
-          fetchAddDetails();
-          // fetchSize();
+          //  print("dddddd${productDetails!.product.thumb.toString()}");
+          PdtImgs.add(productDetails!.product.thumb.toString());
+          print(PdtImgs);
+          if (productDetails!.product.extraimage != []) {
+            for (int i = 0;
+                i < productDetails!.product.extraimage.length;
+                i++) {
+              PdtImgs.addAll(
+                  ["$ImageUrl${productDetails!.product.extraimage[i].image}"]);
+            }
+          } else {}
+
+          await fetchSimilarProducts();
         } else {
           print("statuscode not 200");
         }
       } catch (e) {
       } finally {
-        print(isLoading);
-        // isLoading(false);
+        print("loading valuee${isLoading}");
       }
     }
   }
 
   fetchAddDetails() async {
+    print("worked");
     try {
       var response = await http.get(Uri.parse(
-          "${baseurl}api/getProdadditional/p_id/${productId}/key/123456789"));
-      var data = additionalProductDetailFromJson(response.body);
-      if (data.productsProdadditional.addImgs != [] &&
-          data.productsProdadditional.addImgs[0].image != "" &&
-          data.productsProdadditional.addImgs[0].image.isNotEmpty) {
-        print(data.productsProdadditional.addImgs.length);
-        print(PdtImgs);
-        for (int i = 0; i < data.productsProdadditional.addImgs.length; i++) {
-          PdtImgs.addAll(
-              ["$ImageUrl${data.productsProdadditional.addImgs[i].image}"]);
+          "${baseurl}api/getProduct/p_id/${productId}/key/123456789"));
+      print("add res${response.body}");
+      var data = productDetailsFromJson(response.body);
+      if (data.product.extraimage != [] &&
+          data.product.extraimage[0].image != "" &&
+          data.product.extraimage[0].image.isNotEmpty) {
+        for (int i = 0; i < data.product.extraimage.length; i++) {
+          PdtImgs.addAll(["$ImageUrl${data.product.extraimage[i].image}"]);
         }
-        print(PdtImgs);
       }
     } catch (e) {
     } finally {
-      isLoading(false);
+      // isLoading(false);
       print(isLoading);
     }
   }
@@ -118,7 +127,6 @@ class ProductDetailsController extends GetxController {
 
   fetchSize() async {
     try {
-      // sizeLoading(true);
       var response = await http.get(Uri.parse(
           "${baseurl}api/getOptionbyid/p_id/${productId}/key/123456789"));
       if (response.statusCode == 200) {
@@ -142,9 +150,6 @@ class ProductDetailsController extends GetxController {
               await productOptions!.productsOption[0].productOptionId;
           product_option_value_id = await productOptions!
               .productsOption[0].productOptionValue[0].productOptionValueId;
-          print(sizes);
-          print(product_option_id);
-          print(product_option_value_id);
         } else {
           sizes = [];
         }
@@ -153,33 +158,33 @@ class ProductDetailsController extends GetxController {
     } finally {}
   }
 
-  // fetchWishList() async {
-  //   try {
-  //     //isLoading(true);
-  //     var response =
-  //         await http.post(Uri.parse("${baseurl}api/wishlist/key/123456789"),
-  //             body: ({
-  //               "customer_id": customer_id,
-  //             }));
-  //     if (response.statusCode == 200) {
-  //       var data = favoritesFromJson(response.body);
-  //       favorites = data;
-  //       print(favorites);
-  //       // print("responsee favvv${response.body}");
-  //     } else {
-  //       throw "Problem while fetching data from API";
-  //     }
-  //   } catch (e) {
-  //   } finally {
-  //     // isLoading(false);
-  //   }
-  // }
+  fetchSimilarProducts() async {
+    print("similr");
+    try {
+      var response = await http.get(Uri.parse(
+          "${baseurl}api/getrelaProduct/p_id/${productId}/key/123456789"));
+      if (response.statusCode == 200) {
+        var jsonString = json.decode(response.body);
+        if (jsonString["success"] == false) {
+          emptySimilarpdts.value = "true";
+        } else {
+          var data = similarProductsFromJson(response.body);
+          similarProducts = data;
+          print("simil ar pdyts${similarProducts}");
+          emptySimilarpdts.value = "false";
+          print(emptySimilarpdts);
+        }
+      } else {}
+    } catch (e) {
+    } finally {
+      isLoading(false);
+    }
+  }
 
   @override
   void onInit() {
     fetchProductDetails();
     fetchSize();
-    // fetchWishList();
 
     super.onInit();
   }

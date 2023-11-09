@@ -38,6 +38,7 @@ class _AllproductslidableState extends State<Allproductslidable> {
   @override
   Widget build(BuildContext context) {
     //var productDetailController = Get.find<ProductController>();
+
     return SingleChildScrollView(
         child: StreamBuilder<Response<Allproducts>>(
             stream: _bloc.allListDataStream,
@@ -58,14 +59,12 @@ class _AllproductslidableState extends State<Allproductslidable> {
                           padding: const EdgeInsets.only(left: 16, right: 16),
                           child: Row(
                             children: [
-                              Material(
-                                child: Text(
-                                  'All Products',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
+                              Text(
+                                'All Products',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black),
                               ),
                               Spacer(),
                               GestureDetector(
@@ -121,11 +120,17 @@ class _AllproductslidableState extends State<Allproductslidable> {
                                         ),
                                         GestureDetector(
                                           onTap: () {
-                                            Get.to(() => ProductDetailsScreen(
-                                                switchLanguage:
-                                                    widget.switchLanguage,
-                                                productid: allpdts
-                                                    .products![index].id));
+                                            Get.to(
+                                              () => ProductDetailsScreen(
+                                                  switchLanguage:
+                                                      widget.switchLanguage,
+                                                  productid: allpdts
+                                                      .products![index].id),
+                                            );
+                                            // var pdtController = Get.put(
+                                            //     ProductDetailsController(allpdts
+                                            //         .products![index].id));
+                                            // pdtController.fetchProductDetails();
 
                                             // productDetailController.productId =
                                             //     best.feature![index].productId;
@@ -144,7 +149,7 @@ class _AllproductslidableState extends State<Allproductslidable> {
                                                   BorderRadius.circular(5),
                                               child: Image(
                                                 image: NetworkImage(
-                                                    '${allpdts.products?[index].thumb ?? ''}'),
+                                                    '${allpdts.products?[index].thumb}'),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),

@@ -45,14 +45,12 @@ class _CoprodutssState extends State<Coprodutss> {
                           padding: const EdgeInsets.only(left: 16, right: 16),
                           child: Row(
                             children: [
-                              Material(
-                                child: Text(
-                                  'New Arrivals',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
+                              Text(
+                                'New Arrivals',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black),
                               ),
                               Spacer(),
                               GestureDetector(
@@ -110,7 +108,7 @@ class _CoprodutssState extends State<Coprodutss> {
                                                 BorderRadius.circular(5),
                                             child: Image(
                                               image: NetworkImage(
-                                                  '${checkout.latest?[index].thumb ?? ''}'),
+                                                  '${checkout.latest?[index].thumb}'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),

@@ -1,28 +1,22 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-//import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
-import 'package:wayelle/Serach_screen/search_screen.dart';
 import 'package:wayelle/controllers/all_products_controller.dart';
 import 'package:wayelle/controllers/search_controller.dart';
 import 'package:wayelle/skelton_drawer/skelton_favorite.dart';
 
 import '../A_comman_widget/bottom navigationbar.dart';
-import '../Amodule/bloc/all_products_bloc.dart';
-import '../Amodule/model/all_products_model.dart';
-import '../Anetwork/response.dart';
 
 class Getallproducts extends StatelessWidget {
   Getallproducts({Key? key, required this.switchLanguage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var searchController = Get.put(SearchController());
+    var searchController = Get.put(SearchControllers());
     var allproductController = Get.put(AllproductController());
     searchController.searchTapped.value = false;
     searchController.successvalue.value = "";
@@ -35,6 +29,7 @@ class Getallproducts extends StatelessWidget {
                   Get.offAll(() => Bottomnavigation(
                         switchLanguage: (String) {},
                       ));
+                  //  Get.back();
                 },
                 child: Icon(
                   Icons.arrow_back_ios,
@@ -48,6 +43,21 @@ class Getallproducts extends StatelessWidget {
                       width: 250,
                       height: 40,
                       child: TextField(
+                        onChanged: (value) async {
+                          if (value == "") {
+                            searchController.successvalue.value = "";
+                            // await subscription!.cancel();
+                            print(
+                                "successssvalueee${searchController.successvalue}");
+                          }
+
+                          print("search");
+                          if (value != "") {
+                            await searchController.featchSeachResult(value);
+                            print(
+                                "svalue${searchController.successvalue.value}");
+                          }
+                        },
                         controller: searchControllers,
                         autofocus: true,
                         decoration: const InputDecoration(
@@ -140,7 +150,8 @@ class Getallproducts extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         GestureDetector(
-                                          onTap: () {
+                                          onTap: () async {
+                                            FocusScope.of(context).unfocus();
                                             Get.to(() => ProductDetailsScreen(
                                                 productid: allproductController
                                                     .allproducts!

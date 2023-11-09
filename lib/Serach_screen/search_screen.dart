@@ -17,7 +17,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var searchController = Get.put(SearchController());
+    var searchController = Get.put(SearchControllers());
     var allproductController = Get.put(AllproductController());
     searchController.searchTapped.value = false;
     searchController.successvalue.value = "";
@@ -414,10 +414,13 @@ class SearchScreen extends StatelessWidget {
                                                                   height: 6,
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsets
+                                                                  padding:
+                                                                      const EdgeInsets
                                                                           .only(
-                                                                      left: 5,
-                                                                      right: 5),
+                                                                          left:
+                                                                              5,
+                                                                          right:
+                                                                              5),
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -446,10 +449,13 @@ class SearchScreen extends StatelessWidget {
                                                                   height: 6,
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsets
+                                                                  padding:
+                                                                      const EdgeInsets
                                                                           .only(
-                                                                      left: 5,
-                                                                      right: 5),
+                                                                          left:
+                                                                              5,
+                                                                          right:
+                                                                              5),
                                                                   child: Row(
                                                                     children: [
                                                                       Material(

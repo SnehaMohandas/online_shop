@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:wayelle/A_comman_widget/bottom%20navigationbar.dart';
 import 'package:wayelle/Anetwork/api.dart';
-import 'package:wayelle/controllers/order_controller.dart';
+import 'package:wayelle/controllers/my_order_controller.dart';
 import 'package:wayelle/skelton_drawer/skelton_myorders.dart';
 import 'package:intl/intl.dart';
 
@@ -27,7 +27,8 @@ class OrderDetailsScreen extends StatelessWidget {
     // DateTime dateTime = DateTime.parse(date);
     // String formattedDate = DateFormat('dd-MM-yyyy').format(dateTime);
     // print(date);
-    var orderdetailController = Get.put(GetOrderController());
+    //var orderdetailController = Get.put(GetOrderController());
+    var orderdetailController = Get.find<MyOrderController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -66,7 +67,10 @@ class OrderDetailsScreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.bold),
                               ),
-                              Text(date.toString())
+                              Text(
+                                date.toString(),
+                                style: TextStyle(color: Colors.black45),
+                              )
                             ],
                           ),
                           SizedBox(
@@ -75,7 +79,13 @@ class OrderDetailsScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("${quantity}items"),
+                              Text(
+                                quantity == 1
+                                    ? "${quantity} item"
+                                    : "${quantity} items",
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black45),
+                              ),
                               Text(
                                 status.toString(),
                                 style: TextStyle(

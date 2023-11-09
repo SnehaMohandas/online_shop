@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:wayelle/Anetwork/api.dart';
 
 import '../Login_screen/login_screen.dart';
 
 class Userregg extends StatefulWidget {
-
   const Userregg({Key? key, required this.switchLanguage}) : super(key: key);
 
   final Function(String) switchLanguage;
@@ -33,28 +33,28 @@ class _ForgotpassState extends State<Userregg> {
   late String _email;
 
   Future<void> _register() async {
-    final url =
-        'https://globosoft.org/2023/02/wayelle2/api/forgotten/key/123456789';
+    final url = '${baseurl}api/forgotten/key/123456789';
 
     final response = await http.post(Uri.parse(url), body: {
       'telephone': _email,
     });
 
     if (response.statusCode == 200) {
-
       // Registration successful, navigate to home page
 
       Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => LoginScreen(
-              switchLanguage: widget.switchLanguage,
-            )),
+                  switchLanguage: widget.switchLanguage,
+                )),
       );
     } else {
       // Registration failed, show error message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('The E-Mail Address was not found in our records, please try again!')),
+        SnackBar(
+            content: Text(
+                'The E-Mail Address was not found in our records, please try again!')),
       );
     }
   }
@@ -101,7 +101,10 @@ class _ForgotpassState extends State<Userregg> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LoginScreen(switchLanguage: widget.switchLanguage),),
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(
+                                switchLanguage: widget.switchLanguage),
+                          ),
                         );
                       },
                       icon: Icon(
@@ -144,7 +147,7 @@ class _ForgotpassState extends State<Userregg> {
                 height: 26,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16,right: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -276,12 +279,12 @@ class _ForgotpassState extends State<Userregg> {
                     ),
                     child: Center(
                         child: Text(
-                          'Submit',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        )),
+                      'Submit',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    )),
                   ),
                 ),
               ),

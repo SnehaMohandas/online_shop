@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=3.1.1 <3.13.3'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -28,10 +28,10 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   card_loading: ^0.3.0
+  carousel_slider: ^4.2.1
   circular_menu: ^2.0.1
   country_list_pick: ^1.0.1+6
   cupertino_icons: ^1.0.2
-  date_time_picker: ^2.0.0
   dio: ^4.0.6
   email_validator: ^2.1.17
   equatable: ^2.0.5
@@ -40,22 +40,26 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_carousel_slider: ^1.1.0
-  flutter_localization: ^0.1.9
+  flutter_localization: ^0.1.14
   flutter_rating_bar: ^4.0.1
   flutter_ripple: ^0.0.3
   flutter_screenutil: ^5.0.0
   flutter_secure_storage: ^8.0.0
+  flutter_slidable: ^3.0.0
   flutter_staggered_grid_view: ^0.4.0
-  flutter_svg: ^0.22.0
+  flutter_stripe: ^9.4.0
+  flutter_svg: ^2.0.4
   fluttertoast: ^8.2.2
   form_validator: ^2.1.1
   get: ^4.6.5
   http: ^0.13.5
-  intl: ^0.17.0
+  intl: ^0.18.1
   json_annotation: ^4.5.2
   path_provider: ^2.0.11
   permission_handler: ^10.2.0
   rating_summary: ^1.0.2+1
+  read_more_text: ^0.0.5
+  readmore: ^2.2.0
   shared_preferences: ^2.2.1
   shimmer: ^3.0.0
   table_calendar: null
@@ -63,9 +67,15 @@ dependencies:
   webview_flutter: ^2.1.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.0
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo/wayelle-logo.png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -82,6 +92,8 @@ flutter:
     - assets/logo/error-logo.png
     - assets/logo/google-logo.png
     - assets/logo/apple-logo.png
+    - assets/images/emptycart.png
+    - assets/images/empty_cart.png
   #     - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

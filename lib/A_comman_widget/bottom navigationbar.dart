@@ -9,7 +9,6 @@ import 'package:wayelle/controllers/cart_controller.dart';
 import 'package:wayelle/controllers/favorite_controller.dart';
 import 'package:wayelle/controllers/home_controller.dart';
 import 'package:wayelle/controllers/my_order_controller.dart';
-import 'package:wayelle/controllers/order_controller.dart';
 import 'package:wayelle/controllers/user_controller.dart';
 
 import '../Category_page/all_in_one.dart';
@@ -52,10 +51,12 @@ class _MyHomePageState extends State<Bottomnavigation> {
 
   @override
   Widget build(BuildContext context) {
-    var favController = Get.put(FavoriteController());
     var cartController = Get.put(CartController());
-    // var orderController = Get.put(GetOrderController());
+
     var myorderController = Get.put(MyOrderController());
+
+    var favController = Get.put(FavoriteController());
+    // var orderController = Get.put(GetOrderController());
 
     var homeontrolller = Get.put(HomeController());
     var allproductController = Get.put(AllproductController());
@@ -67,10 +68,10 @@ class _MyHomePageState extends State<Bottomnavigation> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          homeontrolller.fetchBanners();
-          favController.fetchWishList();
+          //homeontrolller.fetchBanners();
+          // favController.fetchWishList();
           cartController.fetchCart();
-          myorderController.fetchMyorders();
+          // myorderController.fetchMyorders();
           // orderController.checkKeyExists("orderId");
           // orderController.orderId.toString() != null ||
           //         orderController.orderId.toString() != ""

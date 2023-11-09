@@ -2,12 +2,18 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:form_validator/form_validator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wayelle/Anetwork/api.dart';
 import 'package:wayelle/Sign_up/Reg_new_user.dart';
+import 'package:wayelle/controllers/all_products_controller.dart';
+import 'package:wayelle/controllers/cart_controller.dart';
+import 'package:wayelle/controllers/favorite_controller.dart';
+import 'package:wayelle/controllers/home_controller.dart';
+import 'package:wayelle/controllers/my_order_controller.dart';
 import '../A_comman_widget/bottom navigationbar.dart';
 import '../Forgot_password/forgotpassword.dart';
 import '../Home_screen/home_screen.dart';
@@ -28,18 +34,25 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  var favController = Get.put(FavoriteController());
+  var cartController = Get.put(CartController());
+  // var orderController = Get.put(GetOrderController());
+  var myorderController = Get.put(MyOrderController());
+
+  var homeontrolller = Get.put(HomeController());
+  var allproductController = Get.put(AllproductController());
 
   final FocusNode emailFocus = FocusNode();
   final FocusNode pswdFocus = FocusNode();
 
   final _validationKey = GlobalKey<FormState>();
-  bool _isLoading = false;
+  // bool _isLoading = false;
   bool _validate = false;
 
   Future<void> _login() async {
-    setState(() {
-      _isLoading = true;
-    });
+    // setState(() {
+    //  // _isLoading = true;
+    // });
 
     // final String email = userNameController.text.trim();
     // final String password = passWordController.text.trim();
@@ -47,8 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final String password = passwordController.text.trim();
 
     final response = await http.post(
-      Uri.parse(
-          'https://globosoft.org/2023/02/wayelle2/api/login/key/123456789'),
+      Uri.parse('${baseurl}api/login/key/123456789'),
       // headers: <String, String>{'Content-Type': 'application/json'},
       body: {'email': email, 'password': password},
     );
@@ -63,9 +75,33 @@ class _LoginScreenState extends State<LoginScreen> {
       pref.setString("email", jsonResponse["userdata"]["email"]);
       userEmail = pref.getString("email");
       print("user email${userEmail}");
-      pref.setString("password", jsonResponse["userdata"]["password"]);
-      userPassword = pref.getString("password");
-      print("user password${userPassword}");
+      // pref.setString("password", jsonResponse["userdata"]["password"]);
+      // userPassword = pref.getString("password");
+      // print("user password${userPassword}");
+      pref.setString(
+          "cus_grp_id", jsonResponse["userdata"]["customer_group_id"]);
+      usercustomerGrpId = pref.getString("cus_grp_id");
+      print(usercustomerGrpId);
+      pref.setString("user_firstname", jsonResponse["userdata"]["firstname"]);
+      userfirstName = pref.getString("user_firstname");
+      print(userfirstName);
+      pref.setString("user_lastname", jsonResponse["userdata"]["lastname"]);
+      userlatName = pref.getString("user_lastname");
+      print(userlatName);
+      pref.setString("user_telephone", jsonResponse["userdata"]["telephone"]);
+      usertelePhone = pref.getString("user_telephone");
+      print(usertelePhone);
+      pref.setString(
+          "user_address", jsonResponse["userdata"]["address"]["address_1"]);
+      // useraddress = pref.getString("user_address");
+      // print(useraddress);
+      // pref.setString("user_city", jsonResponse["userdata"]["address"]["city"]);
+      // usercity = pref.getString("user_city");
+      // print(usercity);
+      // pref.setString(
+      //     "user_postcode", jsonResponse["userdata"]["address"]["postcode"]);
+      // userpostCode = pref.getString("user_postcode");
+      // print(userpostCode);
 
       // customer_id = jsonResponse["userdata"]["customer_id"];
       // print("cus id${customer_id}");
@@ -84,6 +120,10 @@ class _LoginScreenState extends State<LoginScreen> {
         prefs.setInt('customer_id', user_id!);
         jsontoken = userData['token'];
         prefs.setString("token", jsontoken!);
+
+        await favController.fetchWishList();
+        await myorderController.fetchMyorders();
+        await cartController.fetchCart();
       }
       print("234== ${user_id}");
     } else {
@@ -107,9 +147,9 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
 
-    setState(() {
-      _isLoading = false;
-    });
+    //   setState(() {
+    //  //   _isLoading = false;
+    //   });
   }
 
   @override
@@ -117,10 +157,10 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   int validateEmail(String emailAddress) {
     String patttern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';

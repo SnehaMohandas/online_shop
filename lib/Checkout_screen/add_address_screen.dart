@@ -22,6 +22,7 @@ class AddAddressScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        centerTitle: true,
         title: Text(
           "Add Address",
           style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),

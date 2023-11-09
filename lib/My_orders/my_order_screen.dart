@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:wayelle/Anetwork/api.dart';
 import 'package:wayelle/My_orders/order_details.dart';
 import 'package:wayelle/controllers/my_order_controller.dart';
-import 'package:wayelle/controllers/order_controller.dart';
 import 'package:wayelle/skelton_drawer/skelton_myorders.dart';
 import 'package:intl/intl.dart';
 
@@ -19,7 +18,7 @@ class MyOrders extends StatelessWidget {
   Widget build(BuildContext context) {
     //  var orderController = Get.find<GetOrderController>();
     var myorderController = Get.find<MyOrderController>();
-    var orderdetailController = Get.put(GetOrderController());
+    //  var orderdetailController = Get.put(GetOrderController());
 
     return Scaffold(
         appBar: AppBar(
@@ -35,10 +34,34 @@ class MyOrders extends StatelessWidget {
         body: Obx(
           () => myorderController.isLoading.value == true
               ? SkeltonMyorders()
-              : myorderController.myOrders == null
+              : myorderController.myOrders == null ||
+                      myorderController.emptyOrder == true
                   ? Center(
-                      child: Text("No orders found"),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 120,
+                            width: 120,
+                            decoration: BoxDecoration(
+                                // color: Colors.amber,
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/emptycart.png"),
+                                    fit: BoxFit.cover)),
+                          ),
+                          Text(
+                            "You have no orders yet!",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
                     )
+                  // Center(
+                  //     child: Text("No orders found"),
+                  //   )
+
                   : ListView.builder(
                       itemCount: myorderController.myOrders!.orders.length,
                       itemBuilder: (context, index) {
@@ -48,8 +71,8 @@ class MyOrders extends StatelessWidget {
                         String formattedDate =
                             DateFormat('dd-MM-yyyy').format(dateTime);
                         print(formattedDate);
-                        var orderdetailController =
-                            Get.put(GetOrderController());
+                        // var orderdetailController =
+                        //     Get.put(GetOrderController());
                         return Padding(
                           padding: const EdgeInsets.only(
                               left: 15, right: 15, top: 8, bottom: 8),
@@ -123,7 +146,7 @@ class MyOrders extends StatelessWidget {
                                               ));
                                           print(myorderController
                                               .myOrders!.orders[index].orderId);
-                                          orderdetailController.getOrders(
+                                          myorderController.getOrders(
                                             myorderController.myOrders!
                                                 .orders[index].orderId,
                                           );

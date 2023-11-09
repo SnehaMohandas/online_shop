@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../Settings/settings_mainpage.dart';
 
-
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({Key? key, required this.switchLanguage}) : super(key: key);
+  const DrawerWidget({Key? key, required this.switchLanguage})
+      : super(key: key);
   final Function(String) switchLanguage;
 
   @override
@@ -16,8 +16,7 @@ class DrawerWidget extends StatelessWidget {
           const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.white,
-              // image: DecorationImage(image: NetworkImage( "https://globosoft.org/myfit/myfitbuddy-nutrition/images/logo.png"),fit: BoxFit.cover)
-            ), //BoxDecoration
+            ),
             child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.black),
               accountName: Padding(
@@ -31,16 +30,24 @@ class DrawerWidget extends StatelessWidget {
               currentAccountPictureSize: Size.square(40),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage('http://192.168.1.14:8000/image/user.jpg'), //Text
+                backgroundImage: NetworkImage(
+                    'http://192.168.1.14:8000/image/user.jpg'), //Text
               ), //circleAvatar
             ), //UserAccountDrawerHeader
           ), //DrawerHeader
           ListTile(
-            leading: const Icon(Icons.settings,color:  Colors.black,),
+            leading: const Icon(
+              Icons.settings,
+              color: Colors.black,
+            ),
             title: const Text('Settings'),
             onTap: () {
               Navigator.push(
-                context,MaterialPageRoute(builder: (context) => Settingsmain(switchLanguage:switchLanguage,)),
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Settingsmain(
+                          switchLanguage: switchLanguage,
+                        )),
               );
             },
           ),

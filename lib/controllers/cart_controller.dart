@@ -15,6 +15,7 @@ class CartController extends GetxController {
   var isLoading = true.obs;
   bool? value;
   List qnty = [];
+  //var emptyCart;
   addToCart(
     product_id,
     quantity,
@@ -45,6 +46,31 @@ class CartController extends GetxController {
     } else {}
   }
 
+  editCart(
+    product_id,
+    quantity,
+    product_option_id,
+    product_option_value_id,
+  ) async {
+    var response =
+        await http.post(Uri.parse("${baseurl}api/addcart/key/123456789"),
+            body: ({
+              "customer_id": customer_id,
+              "product_id": product_id,
+              "quantity": quantity,
+              "option[$product_option_id]": product_option_value_id
+            }));
+
+    if (response.statusCode == 200) {
+      print("add to cart${response.body}");
+      var data = addtoCartFromJson(response.body);
+
+      update();
+
+      return data;
+    } else {}
+  }
+
   fetchCart() async {
     try {
       isLoading(true);
@@ -56,9 +82,15 @@ class CartController extends GetxController {
       value = jsonString['success'];
 
       if (response.statusCode == 200) {
+        // var jsonString = json.decode(response.body);
+        // if (jsonString['success'] == false) {
+        //   emptyCart = true;
+        // } else {
         var data = cartFromJson(response.body);
         cart = data;
         print("cart items${response.body}");
+        // emptyCart = false;
+        //}
       } else {
         print("problem cart");
         throw "Problem while fetching data from API";

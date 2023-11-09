@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:wayelle/Anetwork/api.dart';
 
 import '../../Home_screen/home_screen.dart';
 import '../../Login_screen/login_screen.dart';
 import '../settings_mainpage.dart';
-
 
 class Updatepass extends StatefulWidget {
   const Updatepass({Key? key, required this.switchLanguage}) : super(key: key);
@@ -38,8 +38,7 @@ class _ForgotpassState extends State<Updatepass> {
   late String _newpassword;
 
   Future<void> _register() async {
-    final url =
-        'https://globosoft.org/2023/02/wayelle2/api/editPassword/key/123456789';
+    final url = '${baseurl}api/editPassword/key/123456789';
 
     final response = await http.post(Uri.parse(url), body: {
       'email': _email,
@@ -72,7 +71,6 @@ class _ForgotpassState extends State<Updatepass> {
         ),
       );
     }
-
   }
 
   int validateEmail(String emailAddress) {
@@ -87,75 +85,86 @@ class _ForgotpassState extends State<Updatepass> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              // context,
+              // MaterialPageRoute(
+              //   builder: (context) => Orghome(
+              //     switchLanguage: widget.switchLanguage,
+              //   ),
+              // ),
+              //);
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.black,
+            )),
+        centerTitle: true,
+        title: Text(
+          "Update password",
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
-              SizedBox(
-                height: 66,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Settingsmain(switchLanguage: widget.switchLanguage),),
-                        );
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.black,
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Text(
-                    'Settings',
-                    style: TextStyle(
-                        fontSize: 34,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
-                  )
-                ],
-              ),
+              // SizedBox(
+              //   height: 66,
+              // ),
+              // Row(
+              //   children: [
+              //     SizedBox(
+              //       width: 16,
+              //     ),
+              //     IconButton(
+              //         onPressed: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => Settingsmain(
+              //                   switchLanguage: widget.switchLanguage),
+              //             ),
+              //           );
+              //         },
+              //         icon: Icon(
+              //           Icons.arrow_back_ios,
+              //           color: Colors.black,
+              //         ))
+              //   ],
+              // ),
+
               SizedBox(
                 height: 21,
               ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 16, right: 16),
+              //   child: Row(
+              //     children: [
+              //       Text(
+              //         'Update Password',
+              //         style: TextStyle(
+              //             fontSize: 16,
+              //             fontWeight: FontWeight.w600,
+              //             color: Color(0xFF222222)),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 26,
+              // ),
               Padding(
-                padding: const EdgeInsets.only(left: 16, right: 16),
-                child: Row(
-                  children: [
-                    Text(
-                      'Update Password',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF222222)),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 26,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16,right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -235,7 +244,7 @@ class _ForgotpassState extends State<Updatepass> {
                 height: 16,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16,right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -305,7 +314,7 @@ class _ForgotpassState extends State<Updatepass> {
                 height: 16,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 16,right: 16),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   /* autovalidate is disabled */
@@ -417,7 +426,7 @@ class _ForgotpassState extends State<Updatepass> {
                   }
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 12, right: 12),
                   child: Container(
                     height: 55,
                     width: double.infinity,
@@ -427,12 +436,12 @@ class _ForgotpassState extends State<Updatepass> {
                     ),
                     child: Center(
                         child: Text(
-                          'Submit',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        )),
+                      'Submit',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    )),
                   ),
                 ),
               ),

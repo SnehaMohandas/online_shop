@@ -61,15 +61,6 @@ class _CoprodutssState extends State<Trendinginn> {
             style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
           ),
-          actions: [
-            Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            SizedBox(
-              width: 8,
-            )
-          ],
         ),
         body: SingleChildScrollView(
             child: StreamBuilder<Response<Trending>>(

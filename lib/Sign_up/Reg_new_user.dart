@@ -11,17 +11,17 @@
 //
 // class RegistrationOtp extends StatefulWidget {
 //   const RegistrationOtp({required Key key}) : super(key: key);
-//
+
 //   @override
 //   _RegistrationOtpState createState() => _RegistrationOtpState();
 // }
-//
+
 // class _RegistrationOtpState extends State<RegistrationOtp> {
 //   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 //   var OTPController = TextEditingController();
-//
+
 //   @override
-//
+
 //   Widget build(BuildContext context) {
 //     final width = MediaQuery
 //         .of(context)
@@ -30,16 +30,15 @@
 //     // String defaultFontFamily = 'Roboto-Light.ttf';
 //     double defaultFontSize = 14;
 //     double defaultIconSize = 17;
-//
+
 //     return Scaffold(
-//
+
 //         body:
 //         Form(
 //           key: _key,
 //           child: Column(
 //             children: <Widget>[
-//
-//
+
 //               Flexible(
 //                   flex: 5,
 //                   child: SingleChildScrollView(
@@ -66,8 +65,7 @@
 //                                   //child: Text("Login", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),)
 //                                 ),
 //                               ),
-//
-//
+
 //                               Positioned(
 //                                   height: ScreenUtil().setHeight(400),
 //                                   width: ScreenUtil().setWidth(width + 60),
@@ -80,7 +78,7 @@
 //                                         )
 //                                     ),
 //                                   )),
-//
+
 //                               Positioned(
 //                                 child: Container(
 //                                     margin: EdgeInsets.only(
@@ -90,24 +88,21 @@
 //                                         Image.asset(
 //                                             "assets/icons/choose-icon.png")
 //                                       // Text("Login", style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),),
-//
-//
+
 //                                     )),
 //                               )
 //                               ,
 //                               Positioned(
 //                                 child:  Container(
 //                                   margin: EdgeInsets.only(top: ScreenUtil().setHeight(25)),
-//
+
 //                                   child:
 //                                   IconButton(
 //                                     icon: Icon(Icons.arrow_back_ios, color: Colors.black),
 //                                     onPressed: () => Navigator.of(context).pop(),
 //                                   ),
 //                                   // Text("Login", style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),),
-//
-//
-//
+
 //                                 ),
 //                               ),
 //                               Positioned(
@@ -120,12 +115,11 @@
 //                                         style: TextStyle(color:Colors.black,
 //                                             fontSize: ScreenUtil().setSp(20),
 //                                             fontWeight: FontWeight.bold),),
-//
-//
+
 //                                     )),
 //                               )
 //                               ,
-//
+
 //                             ],
 //                           ),
 //                         ),
@@ -133,7 +127,7 @@
 //                           height: ScreenUtil().setHeight(15),
 //                         ),
 //                         Center(child: Text("Enter the OTP sent to your mobile number ending with ",textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.w700),)),
-//
+
 //                         Container(
 //                           padding: EdgeInsets.symmetric(
 //                               horizontal: ScreenUtil().setWidth(20),vertical: ScreenUtil().setHeight(10)),
@@ -185,37 +179,36 @@
 //                         SizedBox(
 //                           height: ScreenUtil().setHeight(250),
 //                         ),
-//
-//
+
 //                         Container(
-//
+
 //                           padding: EdgeInsets.symmetric(
 //                               horizontal: ScreenUtil().setWidth(20)),
 //                           width: double.infinity,
 //                           child: RaisedButton(
 //                             padding: EdgeInsets.all(17.0),
 //                             onPressed: () {
-//                               // if (_key.currentState.validate()) {
-//                               //   print("Form was Submitted Successfully");
-//                               //   if (OTPController.text != OTP.toString()) {
-//                               //     Fluttertoast.showToast(
-//                               //       msg: "OTP is incorrect",
-//                               //       gravity: ToastGravity.BOTTOM,
-//                               //       toastLength: Toast.LENGTH_SHORT,
-//                               //     );
-//                               //   }
-//                               //   else {
-//                               //     Register(
-//                               //         RegFirstNameController.text,
-//                               //         RegLastNameController.text,
-//                               //         RegMobileNoController.text,
-//                               //         RegEmailController.text,
-//                               //         RegConfirmPasswordController.text,
-//                               //         RegAddressController.text,
-//                               //         RegCityController.text,
-//                               //         RegpostcodeController.text);
-//                               //   }
-//                               // }
+//                               if (_key.currentState.validate()) {
+//                                 print("Form was Submitted Successfully");
+//                                 if (OTPController.text != OTP.toString()) {
+//                                   Fluttertoast.showToast(
+//                                     msg: "OTP is incorrect",
+//                                     gravity: ToastGravity.BOTTOM,
+//                                     toastLength: Toast.LENGTH_SHORT,
+//                                   );
+//                                 }
+//                                 else {
+//                                   Register(
+//                                       RegFirstNameController.text,
+//                                       RegLastNameController.text,
+//                                       RegMobileNoController.text,
+//                                       RegEmailController.text,
+//                                       RegConfirmPasswordController.text,
+//                                       RegAddressController.text,
+//                                       RegCityController.text,
+//                                       RegpostcodeController.text);
+//                                 }
+//                               }
 //                             },
 //                             child: Text(
 //                               "Confirm Your Registration",
@@ -237,8 +230,7 @@
 //                         SizedBox(
 //                           height: ScreenUtil().setHeight(15),
 //                         ),
-//
-//
+
 //                         SizedBox(
 //                           height: ScreenUtil().setHeight(15),
 //                         ),
@@ -246,16 +238,14 @@
 //                     ),
 //                   )
 //               ),
-//
-//
+
 //             ],
 //           ),
-//
+
 //         )
 //     );
 //   }
-//
-//
+
 //   Future Register(String first, String last, String mobile, String email,
 //       String password, String Address, String city, String postcode) async {
 //     print("https://globosoft.co.uk/myFitBuddy/api/register/key/123456789");
@@ -279,12 +269,11 @@
 //         "password": password,
 //         "newsletter": "1"
 //       },
-//
+
 //     ).then((response) async {
 //       print('Response status : ${response.statusCode}');
 //       print('Response body : ${response.body}');
-//
-//
+
 //       if (response.statusCode == 200) {
 //         final prefs = await SharedPreferences.getInstance();
 //         if (json.decode(response.body)["userdata"] ==
@@ -296,12 +285,11 @@
 //             toastLength: Toast.LENGTH_SHORT,
 //           );
 //         }
-//
+
 //         else {
 //           jsonResponse2 = json.decode(response.body.toString())["userdata"];
 //           print('jsonResponse2 == ${jsonResponse2}');
-//
-//
+
 //           if (jsonResponse2 != "Email Alredy Exist") {
 //             CustomerId = jsonResponse2["customer_id"];
 //             String name = jsonResponse2["firstname"];
@@ -309,8 +297,7 @@
 //             String lastname = jsonResponse2["lastname"];
 //             String customer_group_id = jsonResponse2["customer_group_id"];
 //             String telephone = jsonResponse2["telephone"];
-//
-//
+
 //             prefs.setString('customer_id', CustomerId);
 //             prefs.setString('name', name);
 //             prefs.setString('lastname', lastname);
@@ -328,7 +315,7 @@
 //         }
 //       }
 //     }
-//
+
 //     );
 //   }
 // }
@@ -343,7 +330,7 @@ class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key, required this.switchLanguage}) : super(key: key);
   final Function(String) switchLanguage;
 
-  List<String> country = ['Canada', 'India'];
+  List<String> country = ['Canada'];
   List<String> canadastate = [
     'Alberta',
     'British Coloumbia',
@@ -602,34 +589,54 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                TextFormField(
-                    validator: (value) {
-                      if (value!.isEmpty || value == '') {
-                        return 'Please enter your password';
-                      }
-                    },
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: "Password",
-                        hintStyle: TextStyle(fontSize: 15),
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.visibility),
-                        suffixIconColor: Colors.black54)),
+                Obx(
+                  () => TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty || value == '') {
+                          return 'Please enter your password';
+                        }
+                      },
+                      obscureText: regController.obscureText.value,
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          hintText: "Password",
+                          hintStyle: TextStyle(fontSize: 15),
+                          border: InputBorder.none,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              regController.togglePasswordVisibility();
+                            },
+                            child: Icon(regController.obscureText.value
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                          suffixIconColor: Colors.black54)),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                TextFormField(
-                    controller: confirmPasswordController,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: "Confirm password",
-                        hintStyle: TextStyle(fontSize: 15),
-                        border: InputBorder.none,
-                        suffixIcon: Icon(Icons.visibility),
-                        suffixIconColor: Colors.black54)),
+                Obx(
+                  () => TextFormField(
+                      controller: confirmPasswordController,
+                      obscureText: regController.confrirmobscure.value,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          hintText: "Confirm password",
+                          hintStyle: TextStyle(fontSize: 15),
+                          border: InputBorder.none,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              regController.toggleconfirmPasswordVisibility();
+                            },
+                            child: Icon(regController.confrirmobscure.value
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                          suffixIconColor: Colors.black54)),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
@@ -765,3 +772,24 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+//SizedBox(
+                //   height: 48,
+                //   child: Obx(()=>
+                //       TextFormField(
+                //         obscureText: loginController.obscureText.value,
+                //         controller: passwordController,
+                //         decoration: InputDecoration(
+                //           suffixIcon: GestureDetector(
+                //             onTap: () {
+                //               loginController.togglePasswordVisibility();
+                //             },
+                //             child: Icon(loginController.obscureText.value
+                //                 ? Icons.visibility
+                //                 : Icons.visibility_off),
+                //           ),
+                //           labelText: 'Password',
+                //           border: const OutlineInputBorder(),
+                //         ),
+                //       ),
+                //   ),
+                // ),

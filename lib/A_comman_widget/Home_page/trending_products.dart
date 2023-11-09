@@ -59,14 +59,12 @@ class _CoprodutssState extends State<Trendingpdts> {
                           padding: const EdgeInsets.only(left: 16, right: 16),
                           child: Row(
                             children: [
-                              Material(
-                                child: Text(
-                                  'Trending',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20,
-                                      color: Colors.black),
-                                ),
+                              Text(
+                                'Trending',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Colors.black),
                               ),
                               Spacer(),
                               GestureDetector(
@@ -149,7 +147,7 @@ class _CoprodutssState extends State<Trendingpdts> {
                                                   BorderRadius.circular(5),
                                               child: Image(
                                                 image: NetworkImage(
-                                                    '${trend.feature?[index].thumb ?? ''}'),
+                                                    '${trend.feature?[index].thumb}'),
                                                 fit: BoxFit.cover,
                                               ),
                                             ),

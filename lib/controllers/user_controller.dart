@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:wayelle/Amodule/model/add_address_model.dart';
 import 'package:wayelle/Amodule/model/address_model.dart';
@@ -9,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:wayelle/Anetwork/api.dart';
 import 'package:wayelle/Login_screen/login_screen.dart';
 
-import '../Amodule/model/order_details_model.dart';
+import '../Amodule/model/order_det_model.dart';
 
 class UserController extends GetxController {
   UserAddress? userAddress;
@@ -32,6 +35,8 @@ class UserController extends GetxController {
 
   var shippingName = ''.obs;
   var shippingAddress = ''.obs;
+  var shippingCity = ''.obs;
+  var shippingPostcode = ''.obs;
   // var cus_id = "14";
 
   // toggleCheckbox(int index) async {
@@ -72,6 +77,8 @@ class UserController extends GetxController {
 
         shippingName.value = userAddress!.addressesdata[0].firstname;
         shippingAddress.value = userAddress!.addressesdata[0].address1;
+        shippingCity.value = userAddress!.addressesdata[0].city;
+        shippingPostcode.value = userAddress!.addressesdata[0].postcode;
         print(shippingName.value);
         for (int i = 0; i < userAddress!.addressesdata.length; i++) {
           checkboxStates.add(false);
@@ -89,6 +96,22 @@ class UserController extends GetxController {
     } catch (e) {
     } finally {
       isLoading(false);
+    }
+  }
+
+  deleteaddress(addressId) async {
+    var response = await http.post(
+        Uri.parse("${baseurl}api/deleteaddress/key/123456789"),
+        body: ({"address_id": addressId, "customer_id": customer_id}));
+    if (response.statusCode == 200) {
+      print(response.body);
+      Fluttertoast.showToast(
+        msg: "Address deleted",
+        gravity: ToastGravity.BOTTOM,
+        toastLength: Toast.LENGTH_SHORT,
+      );
+      fetchUserAddress();
+      update();
     }
   }
 
@@ -166,6 +189,11 @@ class UserController extends GetxController {
   }
 
   addAddress(firstname, address, city, pincode) async {
+    print(customer_id);
+    print(firstname);
+    print(address);
+    print(city);
+    print(pincode);
     var response =
         await http.post(Uri.parse("${baseurl}api/addaddress/key/123456789"),
             body: ({
@@ -181,47 +209,19 @@ class UserController extends GetxController {
               "zone_id": "",
               "set_default": ""
             }));
+    print(response.body);
     if (response.statusCode == 200) {
+      print(response.statusCode);
       var data = addAddressFromJson(response.body);
       addaddress = data;
-      print(addressChange!.addressesdata);
+      print(addaddress);
+      //  print(addressChange!.addressesdata);
 
       // print("${payment!.paymentMethod[0].code}");
     } else {
       print("payment code not 200");
     }
   }
-
-  // void showTick() {
-  //   isTickVisible.value = true;
-  //   Future.delayed(Duration(seconds: 2), () {
-  //     isTickVisible.value = false;
-  //   });
-  // }
-  //----------------------------
-  // void toggleCheckbox() {
-  //   isChecked.value = !isChecked.value;
-  // }
-  //-------------------------------------------
-  // fetchOrderDEtails() async {
-  //   try {
-  //     // isLoading(true);
-  //     print(isLoading.value.toString());
-  //     var response = await http.post(
-  //         Uri.parse("${baseurl}api/getorderbycus/key/123456789"),
-  //         body: ({"customer_id": "10"}));
-  //     if (response.statusCode == 200) {
-  //       var data = orderDetailsFromJson(response.body);
-  //       orderDetails = data;
-  //       print("adressss${userAddress}");
-  //     } else {
-  //       print("statscode not 200");
-  //     }
-  //   } catch (e) {
-  //   } finally {
-  //     //isLoading(false);
-  //   }
-  // }
 
   @override
   void onInit() {

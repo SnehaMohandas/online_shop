@@ -28,15 +28,6 @@ class FavScreen extends StatelessWidget {
             style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
           ),
-          actions: [
-            Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            SizedBox(
-              width: 8,
-            )
-          ],
         ),
         body: Obx(
           () => favController.isLoading.value == true
@@ -100,14 +91,6 @@ class FavScreen extends StatelessWidget {
                                                     builder:
                                                         (BuildContext context) {
                                                       return AlertDialog(
-                                                        title: Text(
-                                                          "Remove",
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
                                                         content: Text(
                                                           'Are you sure to want to remove?',
                                                           style: TextStyle(
@@ -116,13 +99,10 @@ class FavScreen extends StatelessWidget {
                                                         actions: <Widget>[
                                                           TextButton(
                                                             child: Text(
-                                                              'Cancel',
+                                                              'No',
                                                               style: TextStyle(
                                                                   color: Colors
-                                                                      .red,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                                      .black),
                                                             ),
                                                             onPressed: () {
                                                               Navigator.of(
@@ -130,15 +110,17 @@ class FavScreen extends StatelessWidget {
                                                                   .pop(); // Close the dialog
                                                             },
                                                           ),
-                                                          TextButton(
+                                                          ElevatedButton(
+                                                            style: ElevatedButton
+                                                                .styleFrom(
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .black),
                                                             child: Text(
-                                                              'OK',
+                                                              'Yes',
                                                               style: TextStyle(
                                                                   color: Colors
-                                                                      .red,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
+                                                                      .white),
                                                             ),
                                                             onPressed:
                                                                 () async {
@@ -151,8 +133,8 @@ class FavScreen extends StatelessWidget {
                                                                       .wishlist[
                                                                           index]
                                                                       .productId);
-                                                              favController
-                                                                  .fetchWishList();
+                                                              // favController
+                                                              //     .fetchWishList();
                                                               // Do something here when OK is pressed
                                                             },
                                                           ),

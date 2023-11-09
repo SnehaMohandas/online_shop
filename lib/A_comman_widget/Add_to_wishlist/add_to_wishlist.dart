@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 
 import 'package:wayelle/Anetwork/api.dart';
-import 'package:wayelle/controllers/fa_controller.dart';
 import 'package:wayelle/controllers/favorite_controller.dart';
 
 class FavoriteToggleIcon extends StatelessWidget {
@@ -16,7 +15,9 @@ class FavoriteToggleIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<FavoriteController>();
+    //var controller = Get.find<FavoriteController>();
+    var controller = Get.put(FavoriteController());
+
     if (controller.favorites == null ||
         controller.favorites!.wishlist
             .where((element) => element.productId == productId)
@@ -27,35 +28,22 @@ class FavoriteToggleIcon extends StatelessWidget {
       controller.isfav.value = true;
     }
     print(controller.favorites);
-    // print(controller.favorites!.wishlist
-    //     .where((element) => element.productId == productId));
 
-    return Obx(() =>
-        // controller.isLoading.value == true
-        //     ? Visibility(
-        //         visible: false,
-        //         child: Center(
-        //           child: CircularProgressIndicator(),
-        //         ),
-        //       )
-        //     :
-        GestureDetector(
+    return Obx(() => GestureDetector(
           onTap: () async {
             if (controller.isfav.value == false) {
               print("add to fav");
               await controller.addtoWishList(productId);
               controller.isfav.value = true;
-              controller.fetchWishList();
             } else {
               print("remove frm fav");
               await controller.removeWishlist(productId);
               controller.isfav.value = false;
-              controller.fetchWishList();
             }
           },
           child: Container(
-            width: 36, // Diameter = radius * 2
-            height: 36, // Diameter = radius * 2
+            width: 36,
+            height: 36,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
