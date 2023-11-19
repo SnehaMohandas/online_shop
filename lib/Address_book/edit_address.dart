@@ -47,8 +47,7 @@ class _RegistrationPageState extends State<EditaddadressPage> {
   ];
 
   Future<void> _register() async {
-    const url =
-        'https://globosoft.org/2023/02/wayelle2/api/addaddress/key/123456789';
+    var url = '${baseurl}api/addaddress/key/123456789';
 
     final response = await http.post(Uri.parse(url), body: {
       'firstname': _name,

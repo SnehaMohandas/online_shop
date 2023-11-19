@@ -55,45 +55,7 @@ class CartScreen extends StatelessWidget {
                   TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
             ),
           ),
-          body:
-              //  cartController.cart == null
-              //     ? Center(
-              //         child: CircularProgressIndicator(),
-              //       ):cartController.value==false?
-              //       Center(
-              //       child: Column(
-              //           mainAxisAlignment: MainAxisAlignment.center,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           children: [
-              //         Text("Your cart is empty!"),
-              //         GestureDetector(
-              //           onTap: () {
-              //             Get.to(
-              //                 () => Getallproducts(switchLanguage: switchLanguage));
-              //           },
-              //           child: Container(
-              //             height: MediaQuery.of(context).size.height * 0.12,
-              //             width: MediaQuery.of(context).size.width * 0.12,
-              //             decoration: BoxDecoration(
-              //               shape: BoxShape.circle,
-              //               boxShadow: [
-              //                 BoxShadow(
-              //                     color: Colors.grey.withOpacity(0.5),
-              //                     blurRadius: 5,
-              //                     offset: Offset(0, 3))
-              //               ],
-              //               color: Colors.white,
-              //             ),
-              //             child: Icon(
-              //               Icons.add_shopping_cart,
-              //               color: Colors.red,
-              //             ),
-              //           ),
-              //         )
-              //       ]))
-              //     : Text("data")
-
-              Obx(() {
+          body: Obx(() {
             if (cartController.isLoading.value == true) {
               return SkeltonCart();
             } else if (cartController.value == false ||

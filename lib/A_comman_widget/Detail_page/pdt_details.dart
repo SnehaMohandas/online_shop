@@ -12,7 +12,7 @@ import 'package:readmore/readmore.dart';
 //import 'package:read_more_text/read_more_text.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wayelle/A_comman_widget/Add_to_wishlist/add_to_wishlist.dart';
-import 'package:wayelle/A_comman_widget/Detail_page/detail_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/similar_pdts.dart';
 import 'package:wayelle/A_comman_widget/bottom%20navigationbar.dart';
 import 'package:wayelle/Amodule/model/additional_pdt_details_model.dart';
 import 'package:wayelle/Anetwork/api.dart';

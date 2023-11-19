@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:wayelle/Anetwork/api.dart';
 
-import '../../Home_screen/home_screen.dart';
 import '../../Login_screen/login_screen.dart';
 import '../../main.dart';
 import '../settings_mainpage.dart';

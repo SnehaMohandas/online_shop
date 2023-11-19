@@ -56,6 +56,7 @@ class RegisterController extends GetxController {
       password,
       newsLetter) async {
     try {
+      print("reg");
       //isLoading(true);
       var response =
           await http.post(Uri.parse("${baseurl}api/new_register/key/123456789"),
@@ -77,6 +78,7 @@ class RegisterController extends GetxController {
                 "newsletter": "1"
               }));
       if (response.statusCode == 200) {
+        print(response.body);
         var jsondata = json.decode(response.body);
         if (jsondata['userdata'] == "email / contact exist") {
           Fluttertoast.showToast(

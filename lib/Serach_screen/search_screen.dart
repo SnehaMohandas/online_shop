@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/pdt_details.dart';
 import 'package:wayelle/A_comman_widget/bottom%20navigationbar.dart';
 import 'package:wayelle/controllers/all_products_controller.dart';
 import 'package:wayelle/controllers/search_controller.dart';

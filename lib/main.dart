@@ -13,22 +13,17 @@ import 'package:wayelle/controllers/favorite_controller.dart';
 import 'package:wayelle/controllers/my_order_controller.dart';
 import 'package:wayelle/controllers/product_details_controller.dart';
 import 'package:wayelle/controllers/user_register_controller.dart';
-import 'package:wayelle/wishlist/wishlist_listing.dart';
-import 'A_comman_widget/Country_Zone/country_dropdown.dart';
 import 'A_comman_widget/Home_page/Best_seller.dart';
 import 'A_comman_widget/Home_page/latest_products.dart';
 import 'A_comman_widget/Home_page/trending_products.dart';
 import 'A_comman_widget/bottom navigationbar.dart';
-import 'Address_book/List_address.dart';
-import 'Address_book/add_new_address.dart';
+
 import 'Address_book/edit_address.dart';
 import 'Category_page/all_in_one.dart';
-import 'Category_page/category_page.dart';
 import 'Category_page/child_category.dart';
 import 'Category_page/child_category_products.dart';
 import 'Forgot_password/forgotpassword.dart';
 import 'Get_all_products/all_products.dart';
-import 'Home_screen/home_screen.dart';
 import 'Home_screen/org_home.dart';
 import 'Inner_pages/bestseller_innerpage.dart';
 import 'Inner_pages/latestproduct_innerpage.dart';
@@ -122,6 +117,7 @@ class _SplashScreenState extends State<SplashScreen> {
     int? user_id = prefs.getInt('customer_id');
 
     final pref = await SharedPreferences.getInstance();
+
     customer_id = prefs.getString("customer_Id");
     userEmail = prefs.getString("email");
     usercustomerGrpId = prefs.getString("cus_grp_id");

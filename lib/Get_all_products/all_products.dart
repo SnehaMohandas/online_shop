@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/route_manager.dart';
-import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/pdt_details.dart';
 import 'package:wayelle/controllers/all_products_controller.dart';
 import 'package:wayelle/controllers/search_controller.dart';
 import 'package:wayelle/skelton_drawer/skelton_favorite.dart';

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/pdt_details.dart';
 import 'package:wayelle/Anetwork/api.dart';
 
 /// category

@@ -189,6 +189,3 @@ class ProductDetailsController extends GetxController {
     super.onInit();
   }
 }
-//https://globosoft.org/2023/02/wayelle2/api/getProduct/p_id/43/key/123456789
-//globosoft.org/2023/02/wayelle2/api/getLatest/limit/4/key/123456789
-

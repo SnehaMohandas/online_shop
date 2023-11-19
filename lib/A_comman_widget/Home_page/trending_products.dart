@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/pdt_details.dart';
 
 import '../../Amodule/bloc/bestseller.dart';
 import '../../Amodule/bloc/trending_bloc.dart';
@@ -11,7 +11,6 @@ import '../../Anetwork/response.dart';
 import '../../Inner_pages/bestseller_innerpage.dart';
 import '../../Inner_pages/latestproduct_innerpage.dart';
 import '../../Inner_pages/trending_products.dart';
-import '../../Product_detail_page/pdetail.dart';
 
 class Trendingpdts extends StatefulWidget {
   const Trendingpdts({Key? key, required this.switchLanguage})

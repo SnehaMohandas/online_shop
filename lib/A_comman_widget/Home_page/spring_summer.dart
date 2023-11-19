@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/pdt_details.dart';
 
 import '../../Amodule/bloc/spring_summer.dart';
 import '../../Amodule/model/spring_summer.dart';

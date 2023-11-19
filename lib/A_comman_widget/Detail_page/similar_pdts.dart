@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 //import 'package:get/get.dart';
-import 'package:wayelle/A_comman_widget/Detail_page/details_page.dart';
+import 'package:wayelle/A_comman_widget/Detail_page/pdt_details.dart';
 import 'package:wayelle/controllers/product_details_controller.dart';
 
 import '../../Amodule/bloc/spring_summer.dart';
