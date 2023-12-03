@@ -121,7 +121,7 @@ class ProductDetailsScreen extends StatelessWidget {
             ],
           ),
           body: Obx(
-            () => pdtController.isLoading == true
+            () => pdtController.isLoading.value == true
                 ? Skelton_drawer()
                 : pdtController.PdtImgs == []
                     ? Center(

@@ -699,71 +699,71 @@ class SignUpScreen extends StatelessWidget {
                         child: Text("SIGN UP")),
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
-                Center(
-                  child: Text(
-                    'or',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
-                Center(
-                  child: Container(
-                    height: 30,
-                    width: 200,
-                    // color: Colors.amber,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          width: 20,
-                          height: 30,
-                          //color: Colors.green,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/logo/google-logo.png"))),
-                        ),
-                        Text(
-                          "Sign in with google",
-                          style: TextStyle(fontSize: 16, color: Colors.black54),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: Container(
-                    height: 30,
-                    width: 200,
-                    // color: Colors.amber,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          width: 20,
-                          height: 30,
-                          //color: Colors.green,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      "assets/logo/apple-logo.png"))),
-                        ),
-                        Text(
-                          "Sign in with apple",
-                          style: TextStyle(fontSize: 16, color: Colors.black54),
-                        )
-                      ],
-                    ),
-                  ),
-                )
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height * 0.01,
+                // ),
+                // Center(
+                //   child: Text(
+                //     'or',
+                //     style: TextStyle(fontSize: 16),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height * 0.01,
+                // ),
+                // Center(
+                //   child: Container(
+                //     height: 30,
+                //     width: 200,
+                //     // color: Colors.amber,
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //       children: [
+                //         Container(
+                //           width: 20,
+                //           height: 30,
+                //           //color: Colors.green,
+                //           decoration: BoxDecoration(
+                //               image: DecorationImage(
+                //                   image: AssetImage(
+                //                       "assets/logo/google-logo.png"))),
+                //         ),
+                //         Text(
+                //           "Sign in with google",
+                //           style: TextStyle(fontSize: 16, color: Colors.black54),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                // Center(
+                //   child: Container(
+                //     height: 30,
+                //     width: 200,
+                //     // color: Colors.amber,
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //       children: [
+                //         Container(
+                //           width: 20,
+                //           height: 30,
+                //           //color: Colors.green,
+                //           decoration: BoxDecoration(
+                //               image: DecorationImage(
+                //                   image: AssetImage(
+                //                       "assets/logo/apple-logo.png"))),
+                //         ),
+                //         Text(
+                //           "Sign in with apple",
+                //           style: TextStyle(fontSize: 16, color: Colors.black54),
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),

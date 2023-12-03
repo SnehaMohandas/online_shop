@@ -194,7 +194,7 @@ class Shippingaddress extends StatelessWidget {
                                     Container(
                                       width:
                                           MediaQuery.of(context).size.height *
-                                              0.40,
+                                              0.35,
                                       // height: double.infinity,
                                       // color: Colors.amber,
                                       child: Column(
@@ -373,7 +373,7 @@ class Shippingaddress extends StatelessWidget {
                                       height: 26,
                                       width: 90,
                                       child: ElevatedButton(
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               // fixedSize: MaterialStatePropertyAll(siz)
                                               backgroundColor:
                                                   MaterialStatePropertyAll(

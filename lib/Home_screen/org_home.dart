@@ -131,18 +131,31 @@ class Orghome extends StatelessWidget {
           )
         ],
       ),
-      body: Obx(
-        () => controller.isLoading.value == true
-            ? SkeltonHome()
-            : controller.banner == null ||
-                    controller.bannerImgs == [] ||
-                    controller.bannerTitle == []
-                ? SkeltonHome()
-                : SingleChildScrollView(
-                    child: Column(
-                      //mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Stack(
+      body:
+          // Obx(
+          //   () => controller.isLoading.value == true
+          //       ? SkeltonHome()
+          //       : controller.banner == null ||
+          //               controller.bannerImgs == [] ||
+          //               controller.bannerTitle == []
+          //           ? SkeltonHome()
+          //           :
+          SingleChildScrollView(
+        child: Column(
+          //mainAxisSize: MainAxisSize.min,
+          children: [
+            Obx(
+              () => controller.isLoading.value == true
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : controller.banner == null ||
+                          controller.bannerImgs == [] ||
+                          controller.bannerTitle == []
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Stack(
                           children: [
                             Container(
                                 margin: EdgeInsets.only(
@@ -209,106 +222,23 @@ class Orghome extends StatelessWidget {
                                     });
                                   }).toList(),
                                 )),
-                            // Positioned(
-                            //     top: 100,
-                            //     bottom: 100,
-                            //     right: 100,
-                            //     left: 100,
-                            //     child: Text("data"))
                           ],
                         ),
-                        //=============================================================================
-                        // Stack(
-                        //   alignment: Alignment.bottomLeft,
-                        //   children: [
-                        //     Padding(
-                        //       padding:
-                        //           const EdgeInsets.only(left: 12, right: 12, bottom: 14),
-                        //       child: Container(
-                        //           decoration: BoxDecoration(
-                        //               borderRadius: BorderRadius.circular(10)),
-                        //           width: double.infinity,
-                        //           height: 180,
-                        //           child: ClipRRect(
-                        //             borderRadius: BorderRadius.circular(10),
-                        //             child: Image(
-                        //               image: NetworkImage(
-                        //                   'https://globosoft.org/2023/06/app/Image-01.png'),
-                        //               fit: BoxFit.fill,
-                        //               loadingBuilder: (BuildContext context, Widget child,
-                        //                   ImageChunkEvent? loadingProgress) {
-                        //                 if (loadingProgress == null) {
-                        //                   return child;
-                        //                 }
-                        //                 return Center(
-                        //                   child: CircularProgressIndicator(
-                        //                     color: Colors.black,
-                        //                     value: loadingProgress.expectedTotalBytes !=
-                        //                             null
-                        //                         ? loadingProgress.cumulativeBytesLoaded /
-                        //                             loadingProgress.expectedTotalBytes!
-                        //                         : null,
-                        //                   ),
-                        //                 );
-                        //               },
-                        //               errorBuilder: (BuildContext context, Object exception,
-                        //                   StackTrace? stackTrace) {
-                        //                 return Icon(Icons
-                        //                     .error); // Display an error icon if loading fails
-                        //               },
-                        //             ),
-                        //           )),
-                        //     ),
-                        //     Padding(
-                        //       padding: const EdgeInsets.only(left: 50, bottom: 50),
-                        //       child: GestureDetector(
-                        //         onTap: () {
-                        //           Navigator.push(
-                        //             context,
-                        //             MaterialPageRoute(
-                        //               builder: (context) => Getallproducts(
-                        //                 switchLanguage: switchLanguage,
-                        //               ),
-                        //             ),
-                        //           );
-                        //         },
-                        //         child: Container(
-                        //           height: 30.21,
-                        //           width: 101.54,
-                        //           decoration: BoxDecoration(
-                        //               borderRadius: BorderRadius.circular(10),
-                        //               color: Colors.black),
-                        //           child: Center(
-                        //               child: Text(
-                        //             'Shop Now',
-                        //             style: TextStyle(color: Colors.white),
-                        //           )),
-                        //         ),
-                        //       ),
-                        //     )
-                        //   ],
-                        // ),
-                        //----------------------------------------------------------------
-                        //  Flexible(child: SliderBanner()),
-
-                        ///
-                        // Coprodutss(
-                        //   switchLanguage: switchLanguage,
-                        // ),
-                        Allproductslidable(switchLanguage: switchLanguage),
-                        Bestselleer(
-                          switchLanguage: switchLanguage,
-                        ),
-                        Springsummerr(
-                          switchLanguage: switchLanguage,
-                        ),
-                        Trendingpdts(
-                          switchLanguage: switchLanguage,
-                        )
-                      ],
-                    ),
-                  ),
+            ),
+            Allproductslidable(switchLanguage: switchLanguage),
+            Bestselleer(
+              switchLanguage: switchLanguage,
+            ),
+            Springsummerr(
+              switchLanguage: switchLanguage,
+            ),
+            Trendingpdts(
+              switchLanguage: switchLanguage,
+            )
+          ],
+        ),
       ),
+      // ),
     );
   }
 }
@@ -357,21 +287,7 @@ class SliderBanner extends StatelessWidget {
                 return Container(
                   height: MediaQuery.of(context).size.height * 0.32,
                   width: double.infinity,
-                  // color: Colors.amber,
-                  // child: Center(
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         image: DecorationImage(
-                  //             image: AssetImage(
-                  //                 "assets/images/home1.png"),
-                  //             fit: BoxFit.cover),
-                  //         // color: Colors.red,
-                  //         borderRadius:
-                  //             BorderRadius.circular(50)),
-                  //     height: MediaQuery.of(context).size.height *
-                  //         0.24,
-                  //   ),
-                  // ),
+
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(e.toString()),

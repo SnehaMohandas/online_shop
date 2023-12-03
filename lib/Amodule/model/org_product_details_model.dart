@@ -224,21 +224,23 @@
 
 import 'dart:convert';
 
-ProductDetails productDetailsFromJson(String str) =>
-    ProductDetails.fromJson(json.decode(str));
+OrgProductDetails OrgProductDetailsFromJson(String str) =>
+    OrgProductDetails.fromJson(json.decode(str));
 
-String productDetailsToJson(ProductDetails data) => json.encode(data.toJson());
+String OrgProductDetailsToJson(OrgProductDetails data) =>
+    json.encode(data.toJson());
 
-class ProductDetails {
+class OrgProductDetails {
   bool success;
   Product product;
 
-  ProductDetails({
+  OrgProductDetails({
     required this.success,
     required this.product,
   });
 
-  factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(
+  factory OrgProductDetails.fromJson(Map<String, dynamic> json) =>
+      OrgProductDetails(
         success: json["success"],
         product: Product.fromJson(json["product"]),
       );

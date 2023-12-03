@@ -46,7 +46,7 @@ void main() {
   HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey =
-      'pk_live_51M28KDKTgJy3KTxX448K6xAY2NQSpzr7wQoXEnn2wKhrPhTza3bi98ctxxRp19AzzRxiehMmowQjhPla1HMVsXCy001rtz9Nn2';
+      'pk_test_51M28KDKTgJy3KTxXuYHSEgSxGX4CpchDHPJPIot4THCChnrbU8J4dVmrsd14ugUKOtMt1TZiUBUJkoknm5NQ0VIe00zihLBz9D';
   runApp(const MyApp());
 }
 

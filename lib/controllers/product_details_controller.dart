@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:wayelle/Amodule/model/favorite_model.dart';
-import 'package:wayelle/Amodule/model/product_details_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:wayelle/Amodule/model/org_product_details_model.dart';
 import 'package:wayelle/Amodule/model/similar_products_model.dart';
 import 'package:wayelle/Anetwork/api.dart';
 
@@ -12,7 +12,7 @@ import '../Amodule/model/additional_pdt_details_model.dart';
 import '../Amodule/model/product_option_model.dart';
 
 class ProductDetailsController extends GetxController {
-  ProductDetails? productDetails;
+  OrgProductDetails? productDetails;
   ProductOptions? productOptions;
   SimilarProducts? similarProducts;
   // Favorites? favorites;
@@ -45,9 +45,11 @@ class ProductDetailsController extends GetxController {
         isLoading(true);
         var response = await http.get(Uri.parse(
             "${baseurl}api/getProduct/p_id/${productId}/key/123456789"));
-
+        print("pdtailllll=====>>${response.statusCode}");
         if (response.statusCode == 200) {
-          var data = productDetailsFromJson(response.body);
+          print("object");
+          var data = OrgProductDetailsFromJson(response.body);
+          print(data);
 
           productDetails = data;
           print(PdtImgs);
@@ -74,26 +76,26 @@ class ProductDetailsController extends GetxController {
     }
   }
 
-  fetchAddDetails() async {
-    print("worked");
-    try {
-      var response = await http.get(Uri.parse(
-          "${baseurl}api/getProduct/p_id/${productId}/key/123456789"));
-      print("add res${response.body}");
-      var data = productDetailsFromJson(response.body);
-      if (data.product.extraimage != [] &&
-          data.product.extraimage[0].image != "" &&
-          data.product.extraimage[0].image.isNotEmpty) {
-        for (int i = 0; i < data.product.extraimage.length; i++) {
-          PdtImgs.addAll(["$ImageUrl${data.product.extraimage[i].image}"]);
-        }
-      }
-    } catch (e) {
-    } finally {
-      // isLoading(false);
-      print(isLoading);
-    }
-  }
+  // fetchAddDetails() async {
+  //   print("worked");
+  //   try {
+  //     var response = await http.get(Uri.parse(
+  //         "${baseurl}api/getProduct/p_id/${productId}/key/123456789"));
+  //     print("add res${response.body}");
+  //     var data = productDetailsFromJson(response.body);
+  //     if (data.product.extraimage != [] &&
+  //         data.product.extraimage[0].image != "" &&
+  //         data.product.extraimage[0].image.isNotEmpty) {
+  //       for (int i = 0; i < data.product.extraimage.length; i++) {
+  //         PdtImgs.addAll(["$ImageUrl${data.product.extraimage[i].image}"]);
+  //       }
+  //     }
+  //   } catch (e) {
+  //   } finally {
+  //     // isLoading(false);
+  //     print(isLoading);
+  //   }
+  // }
 
   quantityAdd() {
     quantity = quantity + 1;
